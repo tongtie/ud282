@@ -149,8 +149,39 @@ public class Game {
      * @return String indicating the outcome of the game: "X wins" or "O wins" or "Tie" or "None"
      */
     public String checkGameWinner(char [][]grid){
-        String result = "None";
+        String result = null;
         //Student code goes here ...
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                if(grid[i][j] == '-'){
+                    result =  "None";
+                    continue;
+                }
+                if(i==0 && j==0){
+                    if((grid[0][0]==grid[0][1] && grid[0][1]==grid[0][2]) || (grid[0][0]==grid[1][1] && grid[1][1]==grid[2][2]) || (grid[0][0]==grid[1][0] && grid[1][0]==grid[2][0])){
+                        return String.format("%c wins", Character.toUpperCase(grid[i][j]));
+                    }
+                }
+                else if(i==0 && j==1){
+                    if(grid[0][1]==grid[1][1] && grid[1][1]==grid[2][1]) return String.format("%c wins", Character.toUpperCase(grid[i][j]));
+                }
+                else if(i==0 && j==2){
+                    if(grid[0][2]==grid[1][2] && grid[1][2]==grid[2][2]) return String.format("%c wins", Character.toUpperCase(grid[i][j]));
+                }
+                else if(i==1 && j==0){
+                    if(grid[1][0]==grid[1][1] && grid[1][1]==grid[1][2]) return String.format("%c wins", Character.toUpperCase(grid[i][j]));
+                }
+                else if(i==1 && j==1){
+                    if(grid[0][2]==grid[1][1] && grid[1][1]==grid[2][0]) return String.format("%c wins", Character.toUpperCase(grid[i][j]));
+                }
+                else if(i==2 && j==0){
+                    if(grid[2][0]==grid[2][1] && grid[2][1]==grid[2][2]) return String.format("%c wins", Character.toUpperCase(grid[i][j]));
+                }
+            }
+        }
+        if(result==null){
+            result = "Tie";
+        }
         return result;
     }
 
